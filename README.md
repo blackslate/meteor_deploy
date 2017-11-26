@@ -160,7 +160,7 @@ The contents of the `Vagrantfile` will make Vagrant do three things:
 * Set up the virtual server so that it has the address `10.1.1.2 `
 * Upload the script named `meteor_setup.sh` to the server, and execute it as `root`.
 
-You can find the `meteor_setup.sh`[ here](), or you can download a ZIP file that contains this README, and all the other files you need from [here]().
+You can find the `meteor_setup.sh` [here](https://github.com/blackslate/meteor_deploy/blob/master/meteor_setup.sh), or you can download a ZIP file that contains this README, and all the other files you need from [here](https://github.com/blackslate/meteor_deploy/archive/master.zip).
 
 ## <a name="setup"></a>Setting Up the Server
 Place the `meteor_setup.sh` script in the same directory as the `Vagrantfile`. You might need to make it executable. Run the following in the Terminal:
@@ -312,7 +312,7 @@ The `deploy.sh` script does four things:
 And that's it! The latest version of your app is now online and active ... Ah, but first let's see how you're going to be preparing everything so that `git push` from your work computer sets all this machinery in motion.
 
 ## Setting Up Deployment on your Work Computer
-You'll find a script called `deploy_int.sh` [here](), or you can find it in the ZIP file that you can download from [here](). Place this in the parent folder of your Meteor app. As before, you might need to make it executable. Run the following in the Terminal:
+You'll find a script called `deploy_int.sh` [here](https://github.com/blackslate/meteor_deploy/blob/master/meteor/deploy_init.sh), or you can find it in the ZIP file that you can download from [here](https://github.com/blackslate/meteor_deploy/archive/master.zip). Place this in the parent folder of your Meteor app. As before, you might need to make it executable. Run the following in the Terminal:
 
 ``` bash
 sudo chmod 755 deploy_init.sh
@@ -606,6 +606,9 @@ You'll notice that the tree view of the `/var/www/meteor` directory shows that t
 
 ## Troubleshooting
 Things will go wrong if you give them the slightest opportunity. If you've got this far and everything is working perfectly, then congratulations! If you have encountered any difficulties, create an Issue, and I'll see how we can work out a solution together.
+
+## <a name="server">Security
+If you didn't make any changes to the username and password, it's currently possible to log in to your server with the username `meteor` and the password `meteor`. This isn't safe at all, if your server is accessible to others. You have, however, already got a much more secure system in place: the RSA key pair. You can find more information about using this to make your serve much more secure [here](https://www.cyberciti.biz/faq/how-to-disable-ssh-password-login-on-linux/). It's wise to disable all use of passwords for log in, and to prevent anyone from logging in remotely as root, as the article explains.
 
 ## End note
 OK, that was long: a long way round to get to the point where you simply need to point your Terminal at the parent folder of your Meteor project, and run `./meteor_deploy`. But now perhaps you understand a bit more about how a Meteor project is delivered by a production server, and how Git can help you to automate tasks.
