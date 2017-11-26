@@ -14,8 +14,9 @@ To try this at home, you want to have:
 Below, you will be able to walk through this, step by step. This repository contains everything that you might need to get started.
 
 #### Meteor App
-This tutorial assumes that you already have [Meteor](https://www.meteor.com/) installed, and that you know how to create a barebones Meteor app with a Click Me button, by running `meteor create`. That's the app that you can use to check that everything is working correctly ,
-####<a name="server">Server
+This tutorial assumes that you already have [Meteor](https://www.meteor.com/) installed, and that you know how to create a barebones Meteor app with a Click Me button, by running `meteor create`. That's the app that you can use to check that everything is working correctly.
+
+#### <a name="server">Server
 You'll need a server set up to deliver a Meteor app. This means that it should have the correct versions of the following software packages installed on it:
 
 * Node.js  
@@ -54,7 +55,7 @@ Below are the steps if you are starting from scratch. You'll need to:
 
 If you already have a freshly installed server available, you can skip to [Setting up the server](#setup)
 
-###1 Install VirtualBox:
+### 1 Install VirtualBox:
 
 In a Terminal window:
 
@@ -73,7 +74,7 @@ Launch VirtualBox
 ``` bash
 $ virtualbox
 ```
-####1.1 Create a Host-only Network 
+#### 1.1 Create a Host-only Network 
 
 In the VirtualBox user interface, select the menu item File > Preferences. In the dialogue window that opens, select Network in the left-hand pane and then click on the tab Host-only Networks. Click on the [+] button to create a new network. It will probably be called something like `vboxnet0`.
 
@@ -81,7 +82,7 @@ Set the IPv4 address to `10.1.1.1` with  Mask of `255.255.255.0`
 
 This will add a new IP address of  `10.1.1.1` to your work machine, so that it will be able to connect to a simulated network. In a moment, you'll set up a virtual server that you can connect to at `10.1.1.2`, as if it were elsewhere in the world.
 
-###2 Install Vagrant
+### 2 Install Vagrant
 In a Terminal window:
 
 ``` bash
@@ -121,7 +122,7 @@ tree ~/.vagrant.d -L 2
 ```
 
 
-###3 Set up a virtual machine
+### 3 Set up a virtual machine
 1. Prepare a directory for the installation
 
 ``` bash
@@ -170,7 +171,7 @@ sudo chmod 755 meteor_setup.sh
 
 As it stands, `meteor_setup.sh` wants to set up a server to run your Meteor application at http://www.example.com, using a MondoDB database called `exampledb`. It also wants to create a user called `meteor` which controls what happens in a directory at `/var/www/meteor`, and which lets you log in to your server as `meteor` with the password `meteor`.
 
-###Customizing meteor_setup.sh
+### Customizing meteor_setup.sh
 
 At the top of the file, you will find the following lines:
 
@@ -199,7 +200,7 @@ It's probably fine to leave the username and password the way they are. This wea
 
 If you are working with a real server, out in the world somewhere, you will want to change the values for `server_name`, `root_url` and `mongodb`, so that they correspond to the real names and addresses that your project will be using.
 
-####Testing in a virtual machine
+#### Testing in a virtual machine
 If you are simply testing this in a virtual machine, you may be happy to keep the `example.com` domain name. In this case, you should edit the file at `/etc/hosts` on your work computer, so that it knows to find http://example.com at `10.1.1.2` where your virtual machine is running.
 
 You can edit `/etc/hosts` so that it looks something like this:
@@ -220,7 +221,7 @@ You can edit `/etc/hosts` so that it looks something like this:
 ```
 You'll need root permissions to do this.
 
-###Launching the Installations
+### Launching the Installations
 Now you are ready to execute `vagrant up` from the Terminal and watch many lines of output steadily chugging through your Terminal window. 
 
 The first part of the output (in white) deals with how Vagrant is installing the operating system and launching the server. When the `meteor__setup` provision script start, the output will appear in colour (mostly green). You can look out for the blue numbered lines that tell you how the installation is proceeding. The red lines are most likely not errors, but it's still worth checking them to see if any are indications that something unexpected has happened. 
@@ -288,7 +289,7 @@ You'll see a directory at `/var/www/meteor/bundle` that is currently empty. That
 >NOTE  
 >With Vagrant, this provisioning process will only happen once. When you use `vagrant up` to relaunch the server the next times, all the installed packages will already be in place, and the start up will be much quicker.
 
-##The Secret of How It Works
+## The Secret of How It Works
 Let's get a bit ahead of ourselves, so that you can have an idea of what all this means.
 
 Git is a free and open-source version control system. It allows you to keep track of your changes and to work in collaboration with others on the same project, while ensuring that the conflicts that may arise in different versions of the code are kept under control. It does many many things that do not need to concern you here.
@@ -300,7 +301,7 @@ This `bundle.git` repository is set up so that when you use `git push` to push c
 * It updates the `raw` directory so that its contents are identical to those in the repository on your development computer. The contents of the `raw` file are currently placeholders. You'll be setting up that repository in a moment, with the script `deploy_init.sh`.
 * It calls another script at `/var/www/meteor/deploy.sh`, and this script does all the hard work.
 
-####deploy.sh
+#### deploy.sh
 The `deploy.sh` script does four things:
 
 1. It copies the  entire current version of `/var/www/meteor/raw/bundle` to a tmp directory
@@ -310,13 +311,13 @@ The `deploy.sh` script does four things:
 
 And that's it! The latest version of your app is now online and active ... Ah, but first let's see how you're going to be preparing everything so that `git push` from your work computer sets all this machinery in motion.
 
-##Setting Up Deployment on your Work Computer
+## Setting Up Deployment on your Work Computer
 You'll find a script called `deploy_int.sh` [here](), or you can find it in the ZIP file that you can download from [here](). Place this in the parent folder of your Meteor app. As before, you might need to make it executable. Run the following in the Terminal:
 
 ``` bash
 sudo chmod 755 deploy_init.sh
 ```
-###Customizing deploy_init.sh
+### Customizing deploy_init.sh
 
 At the top of the file, you will find the following lines:
 
@@ -352,9 +353,9 @@ If you don't and you are working on Windows, then you can find instructions on h
 * [git-scm.com](http://git-scm.com/download/win)
 * [git-for-windows](https://git-for-windows.github.io/)
 * [chocolatey](https://chocolatey.org/packages/git)
-* [windows.github.com](http://windows.github.com)
+* [windows.github.com](http://windows.github.com)
 
-####Logging in with an RSA key pair
+#### Logging in with an RSA key pair
 
 You want your `./meteor_deploy` command to run to completion with no further input from you. In particular, you don't want to have to enter a password each time you run it. A secure way of logging on to a remote server is to use an RSA key pair. You may already have such a key pair, or you may have no idea [what it is and what it does](https://help.ubuntu.com/community/SSH/OpenSSH/Keys).
 
@@ -444,7 +445,7 @@ again.
 
 When you are ready, run `./meteor_deploy` as me.
 ```
-##meteor_deploy
+## meteor_deploy
 
 This is it. Everything is ready for you to deploy your Meteor app to your server any time you like with a one-line command.
 
@@ -603,10 +604,10 @@ The update should now be visible at http://www.example.com/
 
 You'll notice that the tree view of the `/var/www/meteor` directory shows that the original `bundle` directory has been moved to the `archive` directory, and renamed with a timestamp. The new `bundle` has all the juicy Meteor goodness that makes your app work. If you visit your application's URL in your browser, you should see that your app is online. Yeah!
 
-##Troubleshooting
+## Troubleshooting
 Things will go wrong if you give them the slightest opportunity. If you've got this far and everything is working perfectly, then congratulations! If you have encountered any difficulties, create an Issue, and I'll see how we can work out a solution together.
 
-##End note
+## End note
 OK, that was long: a long way round to get to the point where you simply need to point your Terminal at the parent folder of your Meteor project, and run `./meteor_deploy`. But now perhaps you understand a bit more about how a Meteor project is delivered by a production server, and how Git can help you to automate tasks.
 
 The `meteor_setup.sh` and `deploy_init.sh` scripts are well commented, so you should be able to work throught them and understand what is going on at each step and why. If your project has additional dependencies, then you might like to fork this repository, customize the install and deploy scripts and make your versions available for others whose Meteor environment is similar to yours.
