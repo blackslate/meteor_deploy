@@ -6,7 +6,7 @@ Deploying a Meteor app to your own server requires a number of fiddly steps. Thi
 
 To try this at home, you want to have:
 
-* A Meteor app
+* A Meteor 1.6 app
 * A local computer to work on (your client machine)
 * A  server
 * An RSA key pair that allows you to connect to the server without entering a password
@@ -15,6 +15,8 @@ Below, you will be able to walk through this, step by step. This repository cont
 
 #### Meteor App
 This tutorial assumes that you already have [Meteor](https://www.meteor.com/) installed, and that you know how to create a barebones Meteor app with a Click Me button, by running `meteor create`. That's the app that you can use to check that everything is working correctly.
+
+I've written the scripts to work with Meteor 1.6. f you want to work with a version of Meteor prior to 1.6, then you will have to edit the `meteor_setup.sh` script so that it requests the appropriate version of Node.js for your project.
 
 #### <a name="server">Server
 You'll need a server set up to deliver a Meteor app. This means that it should have the correct versions of the following software packages installed on it:
